@@ -8,6 +8,18 @@ from .locators import ProductPageLocators
 
 class ProductPage(BasePage):
 
+    def can_add_product_to_basket(self):
+        # проверяем, есть ли на странице кнопка добавления в корзину
+        self.should_be_add_to_basket_button()
+        # кликаем на кнопку добавления в корзину
+        self.add_product_to_basket()
+        # проверяем появились ли сообщения о добавлении товара к корзину
+        self.should_be_success_messages()
+        # проверяем что название товара в сообщении совпадает с названием товара, который действительно был добавлен
+        self.should_be_product_name_matches_product_name_in_basket()
+        # проверяем что стоимость корзины совпадает с ценой товара
+        self.should_be_product_price_equals_value_of_basket()
+
     def should_be_add_to_basket_button(self):
         assert self.is_element_present(
             *ProductPageLocators.ADD_TO_BASKET_BUTTON), "Add to basket button is not presented"
