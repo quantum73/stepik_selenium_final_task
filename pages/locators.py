@@ -2,8 +2,14 @@ from selenium.webdriver.common.by import By
 
 
 class BasePageLocators:
+    BASKET_LINK = (By.XPATH, "//div[contains(@class, 'basket')]/span/a")
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
+
+class BasketPageLocators:
+    BASKET_PRODUCTS = (By.CSS_SELECTOR, "basket_summary")
+    BASKET_CONTINUE_SHOPPING_LINK = (By.XPATH, '//div[@id="content_inner"]/p/a')
 
 
 class LoginPageLocators:
