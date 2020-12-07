@@ -1,5 +1,4 @@
 import math
-import re
 
 from selenium.common.exceptions import NoAlertPresentException
 
@@ -21,15 +20,13 @@ class ProductPage(BasePage):
 
     def should_be_product_price_equals_value_of_basket(self):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text.strip()
-        message_with_price = self.browser.find_element(*ProductPageLocators.SUCCESS_MSG_WITH_PRODUCT_PRICE).text.strip()
-        product_price = float(re.findall(r'\d+\.\d+', product_price)[0])
-        price_in_message = float(re.findall(r'\d+\.\d+', message_with_price)[0])
+        price_in_message = self.browser.find_element(*ProductPageLocators.SUCCESS_MSG_WITH_PRODUCT_PRICE).text.strip()
         assert product_price == price_in_message, "Product price corresponds to the value of the basket"
 
     def should_be_product_name_matches_product_name_in_basket(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text.strip()
         message_with_price = self.browser.find_element(*ProductPageLocators.SUCCESS_MSG_WITH_PRODUCT_NAME).text.strip()
-        assert product_name in message_with_price, "Product name matches the product name that was added to the basket"
+        assert product_name == message_with_price, "Product name matches the product name that was added to the basket"
         print("--- Product add to basket! ---")
 
     def add_product_to_basket(self):
