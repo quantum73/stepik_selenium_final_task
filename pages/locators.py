@@ -9,3 +9,9 @@ class LoginPageLocators:
     LOGIN_URL = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     LOGIN_REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
+
+
+class ProductPageLocators:
+    ADD_TO_BASKET_BUTTON = (By.XPATH, '//button[contains(@class, "btn-add-to-basket")]')
+    PRODUCT_NAME = (By.XPATH, '//div[contains(@class, "product_main")]/h1')
+    PRODUCT_PRICE = (By.XPATH, '//div[contains(@class, "product_main")]/p[1]')
